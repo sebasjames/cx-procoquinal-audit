@@ -181,9 +181,9 @@ function App() {
 
     <footer style={{ backgroundColor: '#f8fafc', padding: '60px 20px', textAlign: 'center', borderTop: '1px solid #e2e8f0' }}>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '50px', marginBottom: '20px' }}>
-        <img src="/logos/Scarpian%20Logo.png" alt="Scarpian AI" style={{ height: '45px', objectFit: 'contain' }} />
+        <img src={`${import.meta.env.BASE_URL}logos/Scarpian%20Logo.webp`} alt="Scarpian AI" style={{ height: '45px', objectFit: 'contain' }} />
         <div style={{ width: '2px', height: '40px', backgroundColor: '#cbd5e1' }}></div>
-        <img src="/logos/Eficia%20Logo.png" alt="Eficia" style={{ height: '55px', objectFit: 'contain' }} />
+        <img src={`${import.meta.env.BASE_URL}logos/Eficia%20Logo.webp`} alt="Eficia" style={{ height: '55px', objectFit: 'contain' }} />
       </div>
       <p style={{ margin: 0, fontSize: '16px', color: '#1e293b', letterSpacing: '1px', fontWeight: 600 }}>
         contacto@scarpianai.com

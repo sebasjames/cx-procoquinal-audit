@@ -34,11 +34,11 @@ const categoriesData: Category[] = [
     name: 'Ventas & Ingresos',
     iconName: 'BadgeDollarSign',
     slides: [
-      { id: 'ventas-ingresos', title: 'Dashboard Comercial', image: '/screenshots/ventas-ingresos.png', description: 'Resumen gerencial del estado de las ventas, ingresos en tiempo real y cumplimiento de metas.' },
-      { id: 'pos-b2b', title: 'Punto de Venta (B2B)', image: '/screenshots/pos-b2b.png', description: 'Interfaz ágil para vendedores que permite facturación rápida y consulta de stock en tiempo real.' },
-      { id: 'crm', title: 'Gestión de Clientes (CRM)', image: '/screenshots/crm.png', description: 'Toda la vida del cliente: historial de compras, créditos, cartera y embudo de ventas.' },
-      { id: 'desempeno-ventas', title: 'Desempeño de Ventas', image: '/screenshots/desempeno-ventas.png', description: 'Análisis detallado del rendimiento por comercial, zonas y líneas de negocio.' },
-      { id: 'atp', title: 'Disponibilidad ATP', image: '/screenshots/atp.png', description: 'Cálculo de "Available To Promise" para nunca prometer inventario que ya está comprometido.' }
+      { id: 'ventas-ingresos', title: 'Dashboard Comercial', image: `\${import.meta.env.BASE_URL}screenshots/ventas-ingresos.webp`, description: 'Resumen gerencial del estado de las ventas, ingresos en tiempo real y cumplimiento de metas.' },
+      { id: 'pos-b2b', title: 'Punto de Venta (B2B)', image: `\${import.meta.env.BASE_URL}screenshots/pos-b2b.webp`, description: 'Interfaz ágil para vendedores que permite facturación rápida y consulta de stock en tiempo real.' },
+      { id: 'crm', title: 'Gestión de Clientes (CRM)', image: `\${import.meta.env.BASE_URL}screenshots/crm.webp`, description: 'Toda la vida del cliente: historial de compras, créditos, cartera y embudo de ventas.' },
+      { id: 'desempeno-ventas', title: 'Desempeño de Ventas', image: `\${import.meta.env.BASE_URL}screenshots/desempeno-ventas.webp`, description: 'Análisis detallado del rendimiento por comercial, zonas y líneas de negocio.' },
+      { id: 'atp', title: 'Disponibilidad ATP', image: `\${import.meta.env.BASE_URL}screenshots/atp.webp`, description: 'Cálculo de "Available To Promise" para nunca prometer inventario que ya está comprometido.' }
     ]
   },
   {
@@ -46,11 +46,11 @@ const categoriesData: Category[] = [
     name: 'Operación',
     iconName: 'PackageSearch',
     slides: [
-      { id: 'centro-inventarios', title: 'Centro de Inventarios', image: '/screenshots/centro-inventarios.png', description: 'Control maestro de existencias con filtros avanzados y valorización instantánea.' },
-      { id: 'inventario-transito', title: 'Inventario Tránsito', image: '/screenshots/inventario-transito.png', description: 'Trazabilidad de mercancía que viene en camino (importaciones o traslados) para anticipar ventas.' },
-      { id: 'produccion-lotes', title: 'Producción y Lotes', image: '/screenshots/produccion-lotes.png', description: 'Gestión de órdenes de ensamblaje (BOM) y control riguroso de trazabilidad de lotes.' },
-      { id: 'ingesta-albaranes', title: 'Ingesta de Albaranes', image: '/screenshots/ingesta-albaranes.png', description: 'Recepción de mercancía física contrastada contra las órdenes de compra en sistema.' },
-      { id: 'etl', title: 'Asistente de Ingesta (ETL)', image: '/screenshots/etl.png', description: 'Mapeador inteligente de datos para importar catálogos enteros desde Excel con cero fricción.' }
+      { id: 'centro-inventarios', title: 'Centro de Inventarios', image: `\${import.meta.env.BASE_URL}screenshots/centro-inventarios.webp`, description: 'Control maestro de existencias con filtros avanzados y valorización instantánea.' },
+      { id: 'inventario-transito', title: 'Inventario Tránsito', image: `\${import.meta.env.BASE_URL}screenshots/inventario-transito.webp`, description: 'Trazabilidad de mercancía que viene en camino (importaciones o traslados) para anticipar ventas.' },
+      { id: 'produccion-lotes', title: 'Producción y Lotes', image: `\${import.meta.env.BASE_URL}screenshots/produccion-lotes.webp`, description: 'Gestión de órdenes de ensamblaje (BOM) y control riguroso de trazabilidad de lotes.' },
+      { id: 'ingesta-albaranes', title: 'Ingesta de Albaranes', image: `\${import.meta.env.BASE_URL}screenshots/ingesta-albaranes.webp`, description: 'Recepción de mercancía física contrastada contra las órdenes de compra en sistema.' },
+      { id: 'etl', title: 'Asistente de Ingesta (ETL)', image: `\${import.meta.env.BASE_URL}screenshots/etl.webp`, description: 'Mapeador inteligente de datos para importar catálogos enteros desde Excel con cero fricción.' }
     ]
   },
   {
@@ -58,16 +58,16 @@ const categoriesData: Category[] = [
     name: 'Contabilidad',
     iconName: 'FileSpreadsheet',
     slides: [
-      { id: 'sabana-general', title: 'Sábana General', image: '/screenshots/sabana-general.png', description: 'El libro mayor del sistema donde aterrizan todos los movimientos financieros y operativos.' },
-      { id: 'activos-liquidez', title: 'Activos & Liquidez', image: '/screenshots/activos-liquidez.png', description: 'Monitor de cuentas bancarias, flujo de caja proyectado y liquidez en tiempo real.' },
-      { id: 'cierres-caja', title: 'Cierres de Caja', image: '/screenshots/cierres-caja.png', description: 'Reportes Z y arqueos cuadradando el efectivo físico contra las ventas registradas.' },
-      { id: 'facturacion-ventas', title: 'Facturación (Ventas)', image: '/screenshots/facturacion-ventas.png', description: 'Auditoría de facturas emitidas, estados ante la DIAN y validación de XML.' },
-      { id: 'devoluciones', title: 'Devoluciones', image: '/screenshots/devoluciones.png', description: 'Gestión de notas crédito y re-ingreso de mercancía al inventario de forma controlada.' },
-      { id: 'exportacion-siigo', title: 'Exportación SIIGO', image: '/screenshots/exportacion-siigo.png', description: 'Generación automática de plantillas compatibles con SIIGO para la conciliación externa.' },
-      { id: 'carga-edi', title: 'Carga de Facturas (EDI)', image: '/screenshots/carga-edi.png', description: 'Lectura automatizada de archivos estructurados para causar facturas de proveedores masivamente.' },
-      { id: 'facturas-correo', title: 'Facturas por Correo', image: '/screenshots/facturas-correo.png', description: 'Buzón integrado que lee correos de proveedores y extrae datos con IA para crear compras automáticas.' },
-      { id: 'conciliacion-datafonos', title: 'Conciliación Datáfonos', image: '/screenshots/conciliacion-datafonos.png', description: 'Cruce automático de los extractos bancarios contra las ventas reportadas en los POS.' },
-      { id: 'caja-menor', title: 'Caja Menor', image: '/screenshots/caja-menor.png', description: 'Registro rápido de gastos menores, viáticos y reembolsos con su debida legalización.' }
+      { id: 'sabana-general', title: 'Sábana General', image: `\${import.meta.env.BASE_URL}screenshots/sabana-general.webp`, description: 'El libro mayor del sistema donde aterrizan todos los movimientos financieros y operativos.' },
+      { id: 'activos-liquidez', title: 'Activos & Liquidez', image: `\${import.meta.env.BASE_URL}screenshots/activos-liquidez.webp`, description: 'Monitor de cuentas bancarias, flujo de caja proyectado y liquidez en tiempo real.' },
+      { id: 'cierres-caja', title: 'Cierres de Caja', image: `\${import.meta.env.BASE_URL}screenshots/cierres-caja.webp`, description: 'Reportes Z y arqueos cuadradando el efectivo físico contra las ventas registradas.' },
+      { id: 'facturacion-ventas', title: 'Facturación (Ventas)', image: `\${import.meta.env.BASE_URL}screenshots/facturacion-ventas.webp`, description: 'Auditoría de facturas emitidas, estados ante la DIAN y validación de XML.' },
+      { id: 'devoluciones', title: 'Devoluciones', image: `\${import.meta.env.BASE_URL}screenshots/devoluciones.webp`, description: 'Gestión de notas crédito y re-ingreso de mercancía al inventario de forma controlada.' },
+      { id: 'exportacion-siigo', title: 'Exportación SIIGO', image: `\${import.meta.env.BASE_URL}screenshots/exportacion-siigo.webp`, description: 'Generación automática de plantillas compatibles con SIIGO para la conciliación externa.' },
+      { id: 'carga-edi', title: 'Carga de Facturas (EDI)', image: `\${import.meta.env.BASE_URL}screenshots/carga-edi.webp`, description: 'Lectura automatizada de archivos estructurados para causar facturas de proveedores masivamente.' },
+      { id: 'facturas-correo', title: 'Facturas por Correo', image: `\${import.meta.env.BASE_URL}screenshots/facturas-correo.webp`, description: 'Buzón integrado que lee correos de proveedores y extrae datos con IA para crear compras automáticas.' },
+      { id: 'conciliacion-datafonos', title: 'Conciliación Datáfonos', image: `\${import.meta.env.BASE_URL}screenshots/conciliacion-datafonos.webp`, description: 'Cruce automático de los extractos bancarios contra las ventas reportadas en los POS.' },
+      { id: 'caja-menor', title: 'Caja Menor', image: `\${import.meta.env.BASE_URL}screenshots/caja-menor.webp`, description: 'Registro rápido de gastos menores, viáticos y reembolsos con su debida legalización.' }
     ]
   },
   {
@@ -75,14 +75,14 @@ const categoriesData: Category[] = [
     name: 'Finanzas & Inteligencia',
     iconName: 'BrainCircuit',
     slides: [
-      { id: 'informes-pedido', title: 'Informes de Pedido', image: '/screenshots/informes-pedido.png', description: 'Sugerencias de abastecimiento que cruzan el stock actual, el lead time y la demanda esperada.' },
-      { id: 'proyecciones', title: 'Proyecciones y Planeación', image: '/screenshots/proyecciones.png', description: 'Modelos de pronóstico de demanda (Forecast) para preparar a la empresa para picos de ventas.' },
-      { id: 'action-center', title: 'Centro de Acción / Alertas', image: '/screenshots/action-center.png', description: 'Notificaciones críticas (stock out, moras) que requieren atención inmediata de los líderes.' },
-      { id: 'impacto-financiero', title: 'Impacto Financiero', image: '/screenshots/impacto-financiero.png', description: 'Visualización del costo de oportunidad y el capital inmovilizado en el inventario actual.' },
-      { id: 'inteligencia-artificial', title: 'Inteligencia Artificial', image: '/screenshots/inteligencia-artificial.png', description: 'Asistente (Copilot) que permite hacer preguntas en lenguaje natural sobre los datos del ERP.' },
-      { id: 'analitica-avanzada', title: 'Analítica Avanzada', image: '/screenshots/analitica-avanzada.png', description: 'Dashboards dinámicos e interactivos de Business Intelligence con cruce de múltiples variables.' },
-      { id: 'gobierno-datos', title: 'Gobierno de Datos', image: '/screenshots/gobierno-datos.png', description: 'Monitor de la salud de la información: identifica clientes sin NIT, SKUs duplicados, etc.' },
-      { id: 'auditoria-terceros', title: 'Auditoría Terceros', image: '/screenshots/auditoria-terceros.png', description: 'Log inmutable de eventos que registra quién, cuándo y cómo se modificó cualquier dato contable.' }
+      { id: 'informes-pedido', title: 'Informes de Pedido', image: `\${import.meta.env.BASE_URL}screenshots/informes-pedido.webp`, description: 'Sugerencias de abastecimiento que cruzan el stock actual, el lead time y la demanda esperada.' },
+      { id: 'proyecciones', title: 'Proyecciones y Planeación', image: `\${import.meta.env.BASE_URL}screenshots/proyecciones.webp`, description: 'Modelos de pronóstico de demanda (Forecast) para preparar a la empresa para picos de ventas.' },
+      { id: 'action-center', title: 'Centro de Acción / Alertas', image: `\${import.meta.env.BASE_URL}screenshots/action-center.webp`, description: 'Notificaciones críticas (stock out, moras) que requieren atención inmediata de los líderes.' },
+      { id: 'impacto-financiero', title: 'Impacto Financiero', image: `\${import.meta.env.BASE_URL}screenshots/impacto-financiero.webp`, description: 'Visualización del costo de oportunidad y el capital inmovilizado en el inventario actual.' },
+      { id: 'inteligencia-artificial', title: 'Inteligencia Artificial', image: `\${import.meta.env.BASE_URL}screenshots/inteligencia-artificial.webp`, description: 'Asistente (Copilot) que permite hacer preguntas en lenguaje natural sobre los datos del ERP.' },
+      { id: 'analitica-avanzada', title: 'Analítica Avanzada', image: `\${import.meta.env.BASE_URL}screenshots/analitica-avanzada.webp`, description: 'Dashboards dinámicos e interactivos de Business Intelligence con cruce de múltiples variables.' },
+      { id: 'gobierno-datos', title: 'Gobierno de Datos', image: `\${import.meta.env.BASE_URL}screenshots/gobierno-datos.webp`, description: 'Monitor de la salud de la información: identifica clientes sin NIT, SKUs duplicados, etc.' },
+      { id: 'auditoria-terceros', title: 'Auditoría Terceros', image: `\${import.meta.env.BASE_URL}screenshots/auditoria-terceros.webp`, description: 'Log inmutable de eventos que registra quién, cuándo y cómo se modificó cualquier dato contable.' }
     ]
   },
   {
@@ -90,7 +90,7 @@ const categoriesData: Category[] = [
     name: 'Configuración',
     iconName: 'Settings',
     slides: [
-      { id: 'configuracion', title: 'Configuración Maestra', image: '/screenshots/configuracion.png', description: 'Ajustes globales del sistema, roles, permisos y parámetros de conectividad (APIs, webhook).' }
+      { id: 'configuracion', title: 'Configuración Maestra', image: `\${import.meta.env.BASE_URL}screenshots/configuracion.webp`, description: 'Ajustes globales del sistema, roles, permisos y parámetros de conectividad (APIs, webhook).' }
     ]
   }
 ];
