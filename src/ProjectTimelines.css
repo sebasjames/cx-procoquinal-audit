@@ -1,0 +1,206 @@
+.gantt-container {
+  margin: 30px 0 0 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  background: #f8fafc;
+  border-radius: 20px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  border: 1px solid #e2e8f0;
+}
+
+.gantt-header {
+  margin-bottom: 20px;
+}
+
+.gantt-header h3 {
+  font-size: 18px;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+  font-weight: 700;
+}
+
+.gantt-header p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.gantt-chart {
+  display: flex;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px 30px 20px 20px;
+  gap: 20px;
+}
+
+.gantt-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 180px;
+  flex-shrink: 0;
+  padding-top: 30px;
+}
+
+.gantt-row-label {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  padding-right: 15px;
+  border-right: 2px solid #f1f5f9;
+}
+
+.gantt-row-label h4 {
+  margin: 0;
+  font-size: 13px;
+  color: #334155;
+}
+
+.gantt-row-label span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.gantt-tracks-container {
+  flex-grow: 1;
+  position: relative;
+  padding-top: 30px;
+}
+
+.gantt-axis {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  height: 25px;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.gantt-axis span {
+  position: absolute;
+  bottom: 4px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.gantt-grid-line {
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  width: 1px;
+  background: #f1f5f9;
+  z-index: 1;
+}
+
+.gantt-today-line {
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  width: 2px;
+  background: #f59e0b;
+  z-index: 10;
+}
+
+.today-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f59e0b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.gantt-row {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.gantt-track-area {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.gantt-bar {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 10px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.bar-progress {
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.bar-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 100%);
+}
+
+.gantt-bar.phase1 .bar-progress {
+  background: #3b82f6;
+}
+
+.gantt-bar.phase2 .bar-progress {
+  background: #a855f7;
+}
+
+.gantt-milestone {
+  position: absolute;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+}
+
+.milestone-dot {
+  width: 2px;
+  height: 8px;
+  background: #a855f7;
+  margin-bottom: 2px;
+}
+
+.milestone-text {
+  font-size: 10px;
+  color: #8b5cf6;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.timeline-context {
+  font-size: 13px;
+  color: #64748b;
+  background: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top: 20px;
+}

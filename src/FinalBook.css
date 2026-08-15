@@ -1,0 +1,339 @@
+.final-book-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: 'Inter', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.book-header-text {
+  flex: 1;
+  text-align: left;
+}
+
+.book-header-text h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.book-header-text p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.fullscreen-book-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: #0f172a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.fullscreen-book-btn:hover {
+  background-color: #1e293b;
+}
+
+/* NATIVE FULLSCREEN FIXES */
+.final-book-wrapper:fullscreen {
+  max-width: none;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #222; /* Fondo oscuro y cinemático para el modo lectura full screen */
+}
+
+.final-book-wrapper:fullscreen .book-header {
+  padding: 20px 30px;
+  margin-bottom: 0;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  z-index: 100;
+}
+
+.final-book-wrapper:fullscreen .book-header-text {
+  display: none; /* Ocultamos el título para que brille el libro */
+}
+
+.final-book-wrapper:fullscreen .book-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: none;
+  height: 100vh; /* Obligamos a que use todo el alto del monitor */
+}
+
+.book-container {
+  width: 100%;
+  max-width: 1000px; /* Ancho máximo de las dos hojas abiertas juntas */
+  aspect-ratio: 10/7; /* Para mantener una proporción realista tipo hoja carta (5/7 cada hoja) */
+  display: flex;
+  justify-content: center;
+  perspective: 1500px; /* Para mejorar las sombras y el 3D */
+}
+
+.flip-book-element {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.book-page {
+  background-color: #fdfbf7; /* Color de papel hueso */
+  border: 1px solid #e2e8f0;
+  box-shadow: inset -2px 0 10px rgba(0,0,0,0.02); /* Sombrita interna cerca del lomo */
+  overflow: hidden;
+}
+
+/* Efecto de lomo dependiendo de si es hoja derecha o izquierda */
+.book-page:nth-child(even) {
+  border-right: none;
+  border-radius: 2px 8px 8px 2px;
+}
+
+.book-page:nth-child(odd) {
+  border-left: none;
+  border-radius: 8px 2px 2px 8px;
+  box-shadow: inset 2px 0 10px rgba(0,0,0,0.02);
+}
+
+.page-content {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Diseño de la carátula principal */
+.cover-page {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  border-left: 15px solid #020617; /* Simulando el lomo grueso del libro */
+  box-shadow: inset 5px 0 15px rgba(0,0,0,0.5);
+}
+
+.cover-content h1 {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
+}
+
+.cover-content h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #cbd5e1;
+  margin-bottom: 30px;
+}
+
+.cover-content .divider {
+  width: 50px;
+  height: 4px;
+  background-color: #3b82f6;
+  margin: 0 auto 30px auto;
+  border-radius: 2px;
+}
+
+.cover-content p {
+  font-size: 14px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Contraportada (parte de atrás) */
+.back-cover {
+  border-left: none;
+  border-right: 15px solid #020617;
+}
+
+/* Estilos para el interior del reporte */
+.report-page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  color: #334155;
+}
+
+.report-page-content h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 5px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.report-page-content h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.report-page-content p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.report-list {
+  font-size: 12px;
+  line-height: 1.5;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.report-list li {
+  margin-bottom: 5px;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-bottom: 15px;
+}
+
+.report-table th, .report-table td {
+  border: 1px solid #cbd5e1;
+  padding: 6px;
+  text-align: left;
+}
+
+.report-table th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.report-table td {
+  color: #334155;
+}
+
+.alert-box {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  border-left: 4px solid;
+}
+
+.alert-box.warning {
+  background-color: #fef3c7;
+  border-left-color: #f59e0b;
+  color: #92400e;
+}
+
+.alert-box.danger {
+  background-color: #fee2e2;
+  border-left-color: #ef4444;
+  color: #991b1b;
+}
+
+/* Veredicto final page */
+.verdict-page {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.verdict-container {
+  padding: 40px 20px;
+}
+
+.verdict-container h1 {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 2px;
+}
+
+.verdict-divider {
+  width: 60px;
+  height: 4px;
+  background-color: #0ea5e9;
+  margin: 15px auto;
+  border-radius: 2px;
+}
+
+.verdict-container p {
+  font-size: 14px;
+  color: #475569;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.verdict-badge {
+  background-color: #059669;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 14px;
+  display: inline-block;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+}
+
+.verdict-signature {
+  margin-top: auto;
+}
+
+.signature-line {
+  width: 150px;
+  height: 1px;
+  background-color: #94a3b8;
+  margin: 0 auto 10px auto;
+}
