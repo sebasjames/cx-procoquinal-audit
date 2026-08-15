@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, Label } from 'recharts';
 import { CheckCircle2, CircleDashed } from 'lucide-react';
 import CalendarCarousel from './CalendarCarousel';
@@ -66,6 +66,52 @@ const TaskList = ({ tasks }: { tasks: any[] }) => (
 );
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem('avalon_auth') === 'true'
+  );
+  const [password, setPassword] = useState('');
+
+  if (!isAuthenticated) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', background: '#f8fafc', padding: '1rem' }}>
+        <div style={{ background: 'white', padding: '2.5rem', borderRadius: '12px', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', textAlign: 'center', maxWidth: '400px', width: '100%' }}>
+          <h2 style={{ marginBottom: '0.5rem', color: '#0f172a', fontSize: '1.5rem' }}>Acceso Restringido</h2>
+          <p style={{ marginBottom: '2rem', color: '#64748b', fontSize: '0.95rem' }}>Ingrese la contraseña para visualizar la auditoría.</p>
+          <input 
+            type="password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                if (password === 'Avalon_2028!') {
+                  setIsAuthenticated(true);
+                  localStorage.setItem('avalon_auth', 'true');
+                } else {
+                  alert('Contraseña incorrecta');
+                }
+              }
+            }}
+            style={{ padding: '0.75rem', width: '100%', marginBottom: '1.5rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '1rem' }}
+            placeholder="Contraseña"
+          />
+          <button 
+            onClick={() => {
+              if (password === 'Avalon_2028!') {
+                setIsAuthenticated(true);
+                localStorage.setItem('avalon_auth', 'true');
+              } else {
+                alert('Contraseña incorrecta');
+              }
+            }}
+            style={{ padding: '0.75rem 1rem', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', width: '100%', fontSize: '1rem', fontWeight: 'bold' }}
+          >
+            Ingresar
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
     <div className="container">
