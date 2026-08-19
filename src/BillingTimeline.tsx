@@ -9,7 +9,7 @@ const billingEvents = [
   { id: 4, x: 35.5, position: 'bottom',date: "7 de Mayo",   title: "Pago 2 - B",     amount: 2385, currency: "USD", type: "payment", description: "Complemento segundo pago." },
   { id: 5, x: 45.1, position: 'top',   date: "28 de Mayo",  title: "Tercer Pago A",  amount: 5000, currency: "USD", type: "payment", description: "Primer abono del tercer ciclo." },
   { id: 6, x: 61.7, position: 'bottom', date: "3 de Julio",  title: "Tercer Pago B",  amount: 3930, currency: "USD", type: "remainder", description: "Liquidación ($3,450 + $480)." },
-  { id: 7, x: 66.3, position: 'top',   date: "13 de Julio", title: "Facturación Julio", amount: 18881100, currency: "COP", type: "pending", description: "Vencido y sin cobrar." },
+  { id: 7, x: 66.3, position: 'top',   date: "13 de Julio", title: "Facturación Julio", amount: 18881100, currency: "COP", type: "payment", description: "Pagado 19 Agosto" },
   { id: 8, x: 80.6, position: 'bottom', date: "13 de Agosto", title: "Facturación Agosto", amount: 22027950, currency: "COP", type: "pending", description: "Próximo a vencimiento." },
   { id: 9, x: 83,  position: 'top',    date: "14 de Agosto", title: "AUDITORÍA", amount: null, currency: "", type: "audit", description: "Informe detallado integral." },
   { id: 10, x: 95, position: 'bottom', date: "13 de Sept",  title: "Entrega Final", amount: 22027950, currency: "COP", type: "pending", description: "Cierre de la Etapa 2." }
@@ -37,15 +37,19 @@ const formatCurrency = (amount: number | null, currency: string) => {
 };
 
 const BillingTimeline: React.FC = () => {
-  const totalPaid = billingEvents
-    .filter(e => e.type !== 'pending' && e.type !== 'audit')
+  const totalPaidUSD = billingEvents
+    .filter(e => e.type !== 'pending' && e.type !== 'audit' && e.currency === 'USD')
+    .reduce((acc, curr) => acc + (curr.amount || 0), 0);
+
+  const totalPaidCOP = billingEvents
+    .filter(e => e.type !== 'pending' && e.type !== 'audit' && e.currency === 'COP')
     .reduce((acc, curr) => acc + (curr.amount || 0), 0);
 
   return (
     <section className="billing-timeline-wrapper">
       <div className="billing-header">
         <h2>Flujo de Caja y Facturación</h2>
-        <p>Línea de tiempo proporcional de hitos financieros (Total Recaudado: USD ${totalPaid.toLocaleString()})</p>
+        <p>Línea de tiempo proporcional de hitos financieros (Total Recaudado: USD ${totalPaidUSD.toLocaleString()} {totalPaidCOP > 0 ? `+ COP $${totalPaidCOP.toLocaleString()}` : ''})</p>
       </div>
 
       <div className="proportional-gantt-container">
@@ -140,8 +144,11 @@ const BillingTimeline: React.FC = () => {
             <tfoot>
               <tr>
                 <td colSpan={3} className="text-right footer-label">Total Recaudado (Pagado):</td>
-                <td className="text-right footer-value success-value">USD ${totalPaid.toLocaleString()}</td>
-                <td className="footer-label">≈ COP $86,913,000 (Liquidado)</td>
+                <td className="text-right footer-value success-value">
+                  USD ${totalPaidUSD.toLocaleString()}
+                  {totalPaidCOP > 0 && <><br/>+ COP ${totalPaidCOP.toLocaleString()}</>}
+                </td>
+                <td className="footer-label">≈ COP $86,913,000 (Liquidado USD)</td>
               </tr>
               <tr>
                 <td colSpan={3} className="text-right footer-label">Total Pendiente (Proyectado):</td>
