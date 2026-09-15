@@ -12,6 +12,8 @@ import BillingTimeline from './BillingTimeline';
 import MasterGantt from './MasterGantt';
 import NextSteps from './NextSteps';
 import FinalBook from './FinalBook';
+import EstadoActual from './EstadoActual';
+import Pruebas from './Pruebas';
 import './index.css';
 
 const dataEtapa1 = [
@@ -70,6 +72,7 @@ function App() {
     localStorage.getItem('avalon_auth') === 'true'
   );
   const [password, setPassword] = useState('');
+  const [activeTab, setActiveTab] = useState('estado_actual');
 
   if (!isAuthenticated) {
     return (
@@ -116,114 +119,212 @@ function App() {
     <>
     <div className="container">
       <header className="header">
-        <h1>Auditoria Ejecutiva: Procoquinal - Avalon AI</h1>
+        <h1>Procoquinal - Proyecto Avalon AI</h1>
       </header>
 
-      <section className="intro">
-        <h2>Resumen del Proyecto</h2>
-        <p>
-          Este panel evalúa el estado real del desarrollo del sistema <strong>Procoquinal OS</strong>. 
-          A continuación, comparamos lo que se prometió en las etapas iniciales de la cotización 
-          frente al avance real en código, midiendo la brecha ("gap") entre la Interfaz construida y el Backend restante.
-        </p>
-      </section>
+      {/* Tabs menu */}
+      <div style={{ display: 'flex', gap: '1rem', borderBottom: '2px solid #e2e8f0', marginBottom: '2rem' }}>
+        <button
+          onClick={() => setActiveTab('estado_actual')}
+          style={{
+            padding: '1rem 2rem',
+            border: 'none',
+            background: 'none',
+            fontSize: '1.1rem',
+            fontWeight: activeTab === 'estado_actual' ? 'bold' : 'normal',
+            color: activeTab === 'estado_actual' ? '#2563eb' : '#64748b',
+            borderBottom: activeTab === 'estado_actual' ? '3px solid #2563eb' : '3px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            transition: 'all 0.2s'
+          }}
+        >
+          Estado Actual
+        </button>
+        <button
+          onClick={() => setActiveTab('auditoria')}
+          style={{
+            padding: '1rem 2rem',
+            border: 'none',
+            background: 'none',
+            fontSize: '1.1rem',
+            fontWeight: activeTab === 'auditoria' ? 'bold' : 'normal',
+            color: activeTab === 'auditoria' ? '#2563eb' : '#64748b',
+            borderBottom: activeTab === 'auditoria' ? '3px solid #2563eb' : '3px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            transition: 'all 0.2s'
+          }}
+        >
+          Auditoría
+        </button>
+        <button
+          onClick={() => setActiveTab('facturacion')}
+          style={{
+            padding: '1rem 2rem',
+            border: 'none',
+            background: 'none',
+            fontSize: '1.1rem',
+            fontWeight: activeTab === 'facturacion' ? 'bold' : 'normal',
+            color: activeTab === 'facturacion' ? '#2563eb' : '#64748b',
+            borderBottom: activeTab === 'facturacion' ? '3px solid #2563eb' : '3px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            transition: 'all 0.2s'
+          }}
+        >
+          Facturación
+        </button>
+        <button
+          onClick={() => setActiveTab('pruebas')}
+          style={{
+            padding: '1rem 2rem',
+            border: 'none',
+            background: 'none',
+            fontSize: '1.1rem',
+            fontWeight: activeTab === 'pruebas' ? 'bold' : 'normal',
+            color: activeTab === 'pruebas' ? '#2563eb' : '#64748b',
+            borderBottom: activeTab === 'pruebas' ? '3px solid #2563eb' : '3px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            transition: 'all 0.2s'
+          }}
+        >
+          Pruebas
+        </button>
+      </div>
 
-      <section className="charts-section">
-        <div className="chart-card">
-          <h3>Avance: Etapa 1 (Cerebro Operativo)</h3>
-          <p className="chart-desc">Estado de módulos base como Inventario Maestro, ATP y Control Profundo.</p>
-          <div className="chart-container">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={dataEtapa1}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
-                  paddingAngle={5}
-                  dataKey="value"
-                >
-                  <Label value={`${dataEtapa1[0].value}%`} position="center" fill="#000000" style={{ fontSize: '28px', fontWeight: 'bold' }} />
-                  {dataEtapa1.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="task-container">
-            <h4>Detalle de Tareas (Según Cotización)</h4>
-            <TaskList tasks={tasksEtapa1} />
-          </div>
+      {activeTab === 'auditoria' && (
+        <>
+          <section className="intro">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <h2 style={{ margin: 0 }}>Resumen del Proyecto</h2>
+              <span style={{ fontSize: '0.95rem', color: '#64748b', fontWeight: 600, backgroundColor: '#f8fafc', padding: '6px 14px', borderRadius: '20px', border: '1px solid #e2e8f0' }}>
+                Auditoría - 15 de Agosto 2026
+              </span>
+            </div>
+            <p>
+              Este panel evalúa el estado real del desarrollo del sistema <strong>Procoquinal OS</strong>. 
+              A continuación, comparamos lo que se prometió en las etapas iniciales de la cotización 
+              frente al avance real en código, midiendo la brecha ("gap") entre la Interfaz construida y el Backend restante.
+            </p>
+          </section>
+
+          <section className="charts-section">
+            <div className="chart-card">
+              <h3>Avance: Etapa 1 (Cerebro Operativo)</h3>
+              <p className="chart-desc">Estado de módulos base como Inventario Maestro, ATP y Control Profundo.</p>
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={dataEtapa1}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={100}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      <Label value={`${dataEtapa1[0].value}%`} position="center" fill="#000000" style={{ fontSize: '28px', fontWeight: 'bold' }} />
+                      {dataEtapa1.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="task-container">
+                <h4>Detalle de Tareas (Según Cotización)</h4>
+                <TaskList tasks={tasksEtapa1} />
+              </div>
+            </div>
+
+            <div className="chart-card">
+              <h3>Avance: Etapa 2 (Inteligencia y Decisión)</h3>
+              <p className="chart-desc">Estado de módulos avanzados como Forecast, Purchasing y Financiero.</p>
+              <div className="chart-container">
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={dataEtapa2}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={100}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      <Label value={`${dataEtapa2[0].value}%`} position="center" fill="#000000" style={{ fontSize: '28px', fontWeight: 'bold' }} />
+                      {dataEtapa2.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="task-container">
+                <h4>Detalle de Tareas (Según Cotización)</h4>
+                <TaskList tasks={tasksEtapa2} />
+              </div>
+            </div>
+          </section>
+          
+          <ProjectTimelines />
+
+          <EngineeringMetrics />
+
+          <section className="tech-details-section">
+            <Phase1Details />
+            <Phase2Details />
+          </section>
+
+          <AvalonGallery />
+        </>
+      )}
+
+      {activeTab === 'estado_actual' && (
+        <EstadoActual />
+      )}
+    </div>
+
+    {activeTab === 'auditoria' && (
+      <>
+        <div className="full-width-section">
+          <CalendarCarousel />
         </div>
-
-        <div className="chart-card">
-          <h3>Avance: Etapa 2 (Inteligencia y Decisión)</h3>
-          <p className="chart-desc">Estado de módulos avanzados como Forecast, Purchasing y Financiero.</p>
-          <div className="chart-container">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={dataEtapa2}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={100}
-                  paddingAngle={5}
-                  dataKey="value"
-                >
-                  <Label value={`${dataEtapa2[0].value}%`} position="center" fill="#000000" style={{ fontSize: '28px', fontWeight: 'bold' }} />
-                  {dataEtapa2.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS2[index % COLORS2.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          <div className="task-container">
-            <h4>Detalle de Tareas (Según Cotización)</h4>
-            <TaskList tasks={tasksEtapa2} />
-          </div>
+        <div className="full-width-section" style={{ backgroundColor: '#ffffff', padding: '1px 0 40px 0' }}>
+          <EquipmentTracker />
         </div>
-      </section>
-      
-      <ProjectTimelines />
+        <div className="full-width-section" style={{ padding: '40px 0' }}>
+          <MasterGantt />
+        </div>
+        <div className="container">
+          <NextSteps />
+        </div>
+        {/* 
+        <div className="full-width-section" style={{ backgroundColor: '#ffffff', padding: '40px 0' }}>
+          <FinalBook />
+        </div>
+        */}
+      </>
+    )}
 
-      <EngineeringMetrics />
+    {activeTab === 'facturacion' && (
+      <div className="full-width-section" style={{ backgroundColor: '#f8fafc', padding: '40px 0', minHeight: '70vh' }}>
+        <BillingTimeline />
+      </div>
+    )}
 
-      <section className="tech-details-section">
-        <Phase1Details />
-        <Phase2Details />
-      </section>
-
-      <AvalonGallery />
-
-    </div>
-    <div className="full-width-section">
-      <CalendarCarousel />
-    </div>
-    <div className="full-width-section" style={{ backgroundColor: '#ffffff', padding: '1px 0 40px 0' }}>
-      <EquipmentTracker />
-    </div>
-    <div className="full-width-section" style={{ padding: '40px 0' }}>
-      <MasterGantt />
-    </div>
-    <div className="container">
-      <NextSteps />
-    </div>
-    <div className="full-width-section" style={{ backgroundColor: '#f8fafc', padding: '40px 0' }}>
-      <BillingTimeline />
-    </div>
-    {/* 
-    <div className="full-width-section" style={{ backgroundColor: '#ffffff', padding: '40px 0' }}>
-      <FinalBook />
-    </div>
-    */}
+    {activeTab === 'pruebas' && (
+      <div className="full-width-section" style={{ backgroundColor: '#f8fafc', padding: '40px 0', minHeight: '70vh' }}>
+        <Pruebas />
+      </div>
+    )}
 
     <footer style={{ backgroundColor: '#f8fafc', padding: '60px 20px', textAlign: 'center', borderTop: '1px solid #e2e8f0' }}>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '50px', marginBottom: '20px' }}>

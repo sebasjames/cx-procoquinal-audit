@@ -8,7 +8,15 @@ import './MasterGantt.css';
 // Helper to easily create dates
 const d = (year: number, month: number, day: number) => new Date(year, month - 1, day);
 
-const MasterGantt: React.FC = () => {
+interface MasterGanttProps {
+  title?: string;
+  subtitle?: string;
+}
+
+const MasterGantt: React.FC<MasterGanttProps> = ({ 
+  title = "Cronograma Maestro (Macro-Diagrama)",
+  subtitle = "Unificación de la propuesta comercial, desarrollo real, hitos logísticos y facturación."
+}) => {
   const [viewMode, setViewMode] = useState<ViewMode>(ViewMode.Week);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const wrapperRef = useRef<HTMLElement>(null);
@@ -308,7 +316,7 @@ const MasterGantt: React.FC = () => {
     {
       start: d(2026, 3, 13),
       end: d(2026, 3, 13),
-      name: 'Pago Inicial (A y B)',
+      name: 'Pago 1 (A y B)',
       id: 'Fin_1',
       project: 'Finanzas',
       type: 'milestone',
@@ -378,7 +386,7 @@ const MasterGantt: React.FC = () => {
     {
       start: d(2026, 9, 13),
       end: d(2026, 9, 13),
-      name: 'Entrega Final (Pendiente)',
+      name: 'Entregable (Pendiente)',
       id: 'Fin_8',
       project: 'Finanzas',
       type: 'milestone',
@@ -458,8 +466,8 @@ const MasterGantt: React.FC = () => {
     <section ref={wrapperRef} className="master-gantt-wrapper">
       <div className="master-gantt-header">
         <div className="master-gantt-header-text">
-          <h2>Cronograma Maestro (Macro-Diagrama)</h2>
-          <p>Unificación de la propuesta comercial, desarrollo real, hitos logísticos y facturación.</p>
+          <h2>{title}</h2>
+          <p>{subtitle}</p>
         </div>
         
         <div className="gantt-controls">

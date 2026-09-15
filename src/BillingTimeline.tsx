@@ -3,8 +3,8 @@ import { DollarSign, Flag, Clock, FileSearch } from 'lucide-react';
 import './BillingTimeline.css';
 
 const billingEvents = [
-  { id: 1, x: 10,  position: 'top',    date: "13 de Marzo", title: "Pago Inicial A", amount: 1600, currency: "USD", type: "start", description: "Firma de acuerdo e inicio." },
-  { id: 2, x: 10,  position: 'bottom', date: "13 de Marzo", title: "Pago Inicial B", amount: 5400, currency: "USD", type: "payment", description: "Complemento del inicio." },
+  { id: 1, x: 10,  position: 'top',    date: "13 de Marzo", title: "Pago 1 - A", amount: 1600, currency: "USD", type: "start", description: "Firma de acuerdo e inicio." },
+  { id: 2, x: 10,  position: 'bottom', date: "13 de Marzo", title: "Pago 1 - B", amount: 5400, currency: "USD", type: "payment", description: "Complemento del inicio." },
   { id: 3, x: 34.5, position: 'top',   date: "5 de Mayo",   title: "Pago 2 - A",     amount: 5565, currency: "USD", type: "payment", description: "Primer pago de etapa 2." },
   { id: 4, x: 35.5, position: 'bottom',date: "7 de Mayo",   title: "Pago 2 - B",     amount: 2385, currency: "USD", type: "payment", description: "Complemento segundo pago." },
   { id: 5, x: 45.1, position: 'top',   date: "28 de Mayo",  title: "Tercer Pago A",  amount: 5000, currency: "USD", type: "payment", description: "Primer abono del tercer ciclo." },
@@ -12,7 +12,7 @@ const billingEvents = [
   { id: 7, x: 66.3, position: 'top',   date: "13 de Julio", title: "Facturación Julio", amount: 18881100, currency: "COP", type: "payment", description: "Pagado 19 Agosto" },
   { id: 8, x: 80.6, position: 'bottom', date: "13 de Agosto", title: "Facturación Agosto", amount: 22027950, currency: "COP", type: "pending", description: "Próximo a vencimiento." },
   { id: 9, x: 83,  position: 'top',    date: "14 de Agosto", title: "AUDITORÍA", amount: null, currency: "", type: "audit", description: "Informe detallado integral." },
-  { id: 10, x: 95, position: 'bottom', date: "13 de Sept",  title: "Entrega Final", amount: 22027950, currency: "COP", type: "pending", description: "Cierre de la Etapa 2." }
+  { id: 10, x: 95, position: 'bottom', date: "13 de Sept",  title: "Entregable", amount: 22027950, currency: "COP", type: "pending", description: "Cierre de la Etapa 2." }
 ];
 
 const getIcon = (type: string) => {

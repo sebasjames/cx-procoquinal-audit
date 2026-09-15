@@ -3,22 +3,25 @@ import { Package, CheckCircle, Clock, Truck } from 'lucide-react';
 import './EquipmentTracker.css';
 
 const initialEquipment = [
-  { id: 1, qty: 3, delivered: 0, name: "Computador Pared con Lector", desc: "Metal 11.6 inch Price Scanner Machine Windows con Wifi" },
-  { id: 2, qty: 3, delivered: 0, name: "Soporte para pared", desc: "Soporte Para Tv de 32 Pulgadas Movible Ajustable Negro" },
-  { id: 3, qty: 3, delivered: 0, name: "Mini Torres HP PC By Scarpian AI", desc: "HP Tyni PC - i5 6th - SSD 256" },
-  { id: 4, qty: 4, delivered: 1, name: "Impresora Termica", desc: "STARPOS IF4" },
-  { id: 5, qty: 3, delivered: 0, name: "Impresora Facturas", desc: "STAR TP80NC-M USB+LAN NEGRA" },
-  { id: 6, qty: 9, delivered: 0, name: "Lector QR Cableados", desc: "2d/1d Con Base, Usb Digitalpos Dig-d40 Color Negro" },
-  { id: 7, qty: 3, delivered: 0, name: "Estabilizador UPS", desc: "UPS Starpos 240W" },
+  { id: 1, qty: 3, delivered: 1, name: "Computador Pared con Lector", desc: "Metal 11.6 inch Price Scanner Machine Windows con Wifi" },
+  { id: 2, qty: 3, delivered: 1, name: "Soporte para pared", desc: "Soporte Para Tv de 32 Pulgadas Movible Ajustable Negro" },
+  { id: 3, qty: 3, delivered: 1, name: "Mini Torres HP PC By Scarpian AI", desc: "HP Tyni PC - i5 6th - SSD 256 ( Scarpian Custom )" },
+  { id: 4, qty: 4, delivered: 2, name: "Impresora Termica", desc: "STARPOS IF4" },
+  { id: 5, qty: 3, delivered: 1, name: "Impresora Facturas", desc: "STAR TP80NC-M USB+LAN NEGRA" },
+  { id: 6, qty: 9, delivered: 3, name: "Lector QR Cableados", desc: "2d/1d Con Base, Usb Digitalpos Dig-d40 Color Negro" },
+  { id: 7, qty: 3, delivered: 1, name: "Estabilizador UPS", desc: "UPS Starpos 240W" },
   { id: 8, qty: 3, delivered: 0, name: "Lector Inalambrico", desc: "Dig-d40rb Inalámbrico 2d Qr Bluetooth" },
   { id: 9, qty: 1, delivered: 0, name: "Tablet Omar", desc: "Lenovo Tab 11 con Teclado y Pen" },
   { id: 10, qty: 1, delivered: 0, name: "Tablet Luis K", desc: "Lenovo Tab 11 con Teclado y Pen" },
   { id: 11, qty: 3, delivered: 0, name: "Tablet Otra", desc: "Samsung A9 - By Scarpian AI" },
-  { id: 12, qty: 3, delivered: 0, name: "Teclados", desc: "Genericos" },
-  { id: 13, qty: 3, delivered: 0, name: "Mouse", desc: "Genericos" },
-  { id: 14, qty: 1, delivered: 0, name: "Cable UTP - 300 Metros", desc: "Clase 6 Alta Velocidad" },
-  { id: 15, qty: 30, delivered: 0, name: "Canaletas", desc: "Plastico" },
-  { id: 16, qty: 1, delivered: 0, name: "Otros", desc: "Cables, Cobertores, Amarres, extensiones." }
+  { id: 12, qty: 3, delivered: 2, name: "Teclados", desc: "Genericos" },
+  { id: 13, qty: 3, delivered: 2, name: "Mouse", desc: "Genericos" },
+  { id: 14, qty: 60, delivered: 60, name: "Cable UTP Ethernet Cat 6 (Metro)", desc: "Clase 6 Alta Velocidad" },
+  { id: 15, qty: 30, delivered: 4, name: "Canaletas", desc: "Plastico" },
+  { id: 16, qty: 1, delivered: 0, name: "Otros", desc: "Cables, Cobertores, Amarres, extensiones." },
+  { id: 17, qty: 1, delivered: 1, name: "Cable 3M Extension USB", desc: "Extensión USB" },
+  { id: 18, qty: 2, delivered: 2, name: "Rollos Papel Sticker 10 x 15", desc: "Suministros" },
+  { id: 19, qty: 2, delivered: 2, name: "Rollos Papel Carbon", desc: "Suministros" }
 ];
 
 const EquipmentTracker: React.FC = () => {
