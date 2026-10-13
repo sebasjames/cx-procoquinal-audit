@@ -14,6 +14,7 @@ import NextSteps from './NextSteps';
 import FinalBook from './FinalBook';
 import EstadoActual from './EstadoActual';
 import Pruebas from './Pruebas';
+import SiigoPortal from './SiigoPortal';
 import './index.css';
 
 const dataEtapa1 = [
@@ -192,6 +193,23 @@ function App() {
         >
           Pruebas
         </button>
+        <button
+          onClick={() => setActiveTab('siigo')}
+          style={{
+            padding: '1rem 2rem',
+            border: 'none',
+            background: 'none',
+            fontSize: '1.1rem',
+            fontWeight: activeTab === 'siigo' ? 'bold' : 'normal',
+            color: activeTab === 'siigo' ? '#2563eb' : '#64748b',
+            borderBottom: activeTab === 'siigo' ? '3px solid #2563eb' : '3px solid transparent',
+            cursor: 'pointer',
+            marginBottom: '-2px',
+            transition: 'all 0.2s'
+          }}
+        >
+          Capacitación SIIGO
+        </button>
       </div>
 
       {activeTab === 'auditoria' && (
@@ -324,6 +342,10 @@ function App() {
       <div className="full-width-section" style={{ backgroundColor: '#f8fafc', padding: '40px 0', minHeight: '70vh' }}>
         <Pruebas />
       </div>
+    )}
+
+    {activeTab === 'siigo' && (
+      <SiigoPortal />
     )}
 
     <footer style={{ backgroundColor: '#f8fafc', padding: '60px 20px', textAlign: 'center', borderTop: '1px solid #e2e8f0' }}>

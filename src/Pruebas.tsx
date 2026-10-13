@@ -111,8 +111,8 @@ const testData = [
 ];
 
 const Pruebas = () => {
-  const [taskState, setTaskState] = useState<Record<string, { checked: boolean; date: string; notes: string }>>({});
-  const [expandedSessions, setExpandedSessions] = useState<number[]>([1, 2, 3, 4]);
+  const [taskState, setTaskState] = useState<Record<string, { checked: boolean; date: string; notes: string; saved?: boolean }>>({});
+  const [expandedSessions, setExpandedSessions] = useState<number[]>([]);
 
   const toggleSession = (sessionNum: number) => {
     setExpandedSessions(prev => 
@@ -120,7 +120,7 @@ const Pruebas = () => {
     );
   };
 
-  const updateTask = (id: string, field: 'checked' | 'date' | 'notes', value: any) => {
+  const updateTask = (id: string, field: 'checked' | 'date' | 'notes' | 'saved', value: any) => {
     setTaskState(prev => ({
       ...prev,
       [id]: {
@@ -131,7 +131,7 @@ const Pruebas = () => {
   };
 
   const getTask = (id: string) => {
-    return taskState[id] || { checked: false, date: '', notes: '' };
+    return taskState[id] || { checked: false, date: '', notes: '', saved: false };
   };
 
   return (
@@ -179,12 +179,12 @@ const Pruebas = () => {
                           const state = getTask(taskId);
                           
                           return (
-                            <div key={taskId} className={`task-item ${state.checked ? 'completed' : ''}`}>
-                              <div className="task-checkbox" onClick={() => updateTask(taskId, 'checked', !state.checked)}>
-                                {state.checked ? <CheckCircle2 size={24} color="#16a34a" /> : <Circle size={24} color="#cbd5e1" />}
+                            <div key={taskId} className={`task-item ${state.checked ? 'completed' : ''} ${state.saved ? 'saved-task' : ''}`}>
+                              <div className="task-checkbox" style={{ cursor: state.saved ? 'not-allowed' : 'pointer' }} onClick={() => !state.saved && updateTask(taskId, 'checked', !state.checked)}>
+                                {state.checked ? <CheckCircle2 size={24} color={state.saved ? "#9ca3af" : "#16a34a"} /> : <Circle size={24} color="#cbd5e1" />}
                               </div>
                               <div className="task-content">
-                                <p className="task-text">{task}</p>
+                                <p className="task-text" style={{ color: state.saved ? '#64748b' : 'inherit' }}>{task}</p>
                                 <div className="task-controls">
                                   <div className="control-group">
                                     <Calendar size={16} color="#64748b" />
@@ -192,6 +192,7 @@ const Pruebas = () => {
                                       type="date" 
                                       value={state.date}
                                       onChange={(e) => updateTask(taskId, 'date', e.target.value)}
+                                      disabled={state.saved}
                                       className="task-input date-input"
                                     />
                                   </div>
@@ -202,9 +203,28 @@ const Pruebas = () => {
                                       placeholder="Agregar notas o resultados..."
                                       value={state.notes}
                                       onChange={(e) => updateTask(taskId, 'notes', e.target.value)}
+                                      disabled={state.saved}
                                       className="task-input notes-input"
                                     />
                                   </div>
+                                  <button
+                                    onClick={() => !state.saved && updateTask(taskId, 'saved', true)}
+                                    disabled={state.saved}
+                                    style={{
+                                      padding: '6px 12px',
+                                      backgroundColor: state.saved ? '#f1f5f9' : '#0f172a',
+                                      color: state.saved ? '#94a3b8' : 'white',
+                                      border: 'none',
+                                      borderRadius: '6px',
+                                      fontSize: '0.85rem',
+                                      fontWeight: 600,
+                                      cursor: state.saved ? 'not-allowed' : 'pointer',
+                                      transition: 'all 0.2s',
+                                      marginLeft: 'auto'
+                                    }}
+                                  >
+                                    {state.saved ? 'Guardado' : 'Guardar'}
+                                  </button>
                                 </div>
                               </div>
                             </div>

@@ -8,6 +8,49 @@ import './MasterGantt.css';
 // Helper to easily create dates
 const d = (year: number, month: number, day: number) => new Date(year, month - 1, day);
 
+const formatDate = (date: Date) => {
+  const str = date.toLocaleDateString('es-ES', { weekday: 'short', day: '2-digit', month: 'short' });
+  return str.replace(/^\w/, (c) => c.toUpperCase()).replace(/,\s*/, ' ').replace(/\./g, '');
+};
+
+const CustomTaskListTable = ({ rowHeight, rowWidth, tasks, fontFamily, fontSize, onExpanderClick }: any) => {
+  return (
+    <div style={{ fontFamily, fontSize, width: '100%' }}>
+      {tasks.map((t: any) => {
+        let expanderSymbol = "";
+        let paddingLeft = '10px';
+        if (t.type === 'project' && t.hideChildren !== undefined) {
+          expanderSymbol = t.hideChildren ? "▶ " : "▼ ";
+        } else if (t.project) {
+          paddingLeft = '30px'; // indent tasks slightly
+        }
+        return (
+          <div className="_34SS0" style={{ height: rowHeight, display: 'table-row' }} key={t.id}>
+            <div className="_3lLk3" style={{ 
+              display: 'table-cell',
+              verticalAlign: 'middle',
+              paddingLeft: paddingLeft,
+              fontWeight: t.type === 'project' ? 'bold' : 'normal',
+              cursor: t.type === 'project' ? 'pointer' : 'default',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }} onClick={() => t.type === 'project' && onExpanderClick ? onExpanderClick(t) : null}>
+              {expanderSymbol}{t.name}
+            </div>
+            <div className="_3lLk3" style={{ display: 'table-cell', verticalAlign: 'middle', paddingLeft: '10px', paddingRight: '20px', whiteSpace: 'nowrap' }}>
+              {formatDate(t.start)}
+            </div>
+            <div className="_3lLk3" style={{ display: 'table-cell', verticalAlign: 'middle', paddingLeft: '10px', paddingRight: '20px', whiteSpace: 'nowrap' }}>
+              {formatDate(t.end)}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 interface MasterGanttProps {
   title?: string;
   subtitle?: string;
@@ -44,7 +87,7 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
     }
   };
 
-  const tasks: Task[] = [
+  const [tasks, setTasks] = useState<Task[]>([
     // ==========================================
     // GRUPO 1: COTIZACIÓN (Promesa Comercial)
     // ==========================================
@@ -55,7 +98,7 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
       id: 'Promesa',
       type: 'project',
       progress: 100,
-      hideChildren: false,
+      hideChildren: true,
     },
     {
       start: d(2026, 3, 13),
@@ -155,7 +198,7 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
       id: 'Realidad',
       type: 'project',
       progress: 85,
-      hideChildren: false,
+      hideChildren: true,
     },
     {
       start: d(2026, 3, 13),
@@ -223,12 +266,12 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
     // ==========================================
     {
       start: d(2026, 3, 18),
-      end: d(2026, 7, 11),
+      end: d(2026, 10, 7),
       name: 'BITÁCORA DE INCIDENCIAS',
       id: 'Eventos',
       type: 'project',
       progress: 100,
-      hideChildren: false,
+      hideChildren: true,
     },
     {
       start: d(2026, 3, 18),
@@ -300,6 +343,26 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
       progress: 100,
       styles: { backgroundColor: '#ef4444', progressColor: '#b91c1c' },
     },
+    {
+      start: d(2026, 9, 25),
+      end: d(2026, 9, 25),
+      name: 'Instalación Sede Gaitán',
+      id: 'Ev_8',
+      project: 'Eventos',
+      type: 'milestone',
+      progress: 100,
+      styles: { backgroundColor: '#ef4444', progressColor: '#b91c1c' },
+    },
+    {
+      start: d(2026, 10, 7),
+      end: d(2026, 10, 7),
+      name: 'Reunión Scarpian + Junta Directiva Procoquinal',
+      id: 'Ev_9',
+      project: 'Eventos',
+      type: 'milestone',
+      progress: 100,
+      styles: { backgroundColor: '#ef4444', progressColor: '#b91c1c' },
+    },
 
     // ==========================================
     // GRUPO 4: FACTURACIÓN
@@ -311,7 +374,7 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
       id: 'Finanzas',
       type: 'project',
       progress: 100,
-      hideChildren: false,
+      hideChildren: true,
     },
     {
       start: d(2026, 3, 13),
@@ -399,12 +462,12 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
     // ==========================================
     {
       start: d(2026, 8, 14),
-      end: d(2026, 9, 15),
+      end: d(2026, 10, 6),
       name: 'ROADMAP DE CIERRE (PRÓXIMOS PASOS)',
       id: 'Roadmap',
       type: 'project',
       progress: 0,
-      hideChildren: false,
+      hideChildren: true,
     },
     {
       start: d(2026, 8, 14),
@@ -460,7 +523,22 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
       dependencies: ['Road_4'],
       styles: { backgroundColor: '#64748b', progressColor: '#475569' },
     },
-  ];
+    {
+      start: d(2026, 9, 30),
+      end: d(2026, 10, 6),
+      name: 'Paso 6: Proceso de Preparación Backend final',
+      id: 'Road_6',
+      project: 'Roadmap',
+      type: 'task',
+      progress: 0,
+      dependencies: ['Road_5'],
+      styles: { backgroundColor: '#6366f1', progressColor: '#4f46e5' },
+    },
+  ]);
+
+  const handleExpanderClick = (task: Task) => {
+    setTasks(tasks.map(t => (t.id === task.id ? { ...t, hideChildren: !t.hideChildren } : t)));
+  };
 
   return (
     <section ref={wrapperRef} className="master-gantt-wrapper">
@@ -506,7 +584,8 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
       <div className="gantt-container-box">
         <Gantt 
           tasks={tasks} 
-          viewMode={viewMode} 
+          viewMode={viewMode}
+          viewDate={new Date()}
           listCellWidth={isFullscreen ? "300px" : "250px"}
           columnWidth={viewMode === ViewMode.Week ? 150 : viewMode === ViewMode.Month ? 200 : 60}
           ganttHeight={isFullscreen ? window.innerHeight - 80 : 750}
@@ -515,6 +594,8 @@ const MasterGantt: React.FC<MasterGanttProps> = ({
           projectProgressSelectedColor="#0f172a"
           projectBackgroundColor="#e2e8f0"
           projectBackgroundSelectedColor="#cbd5e1"
+          TaskListTable={CustomTaskListTable}
+          onExpanderClick={handleExpanderClick}
         />
       </div>
     </section>

@@ -13,8 +13,7 @@ const monthData = [
   { name: 'Agosto', year: 2026, monthIndex: 7 },
   { name: 'Septiembre', year: 2026, monthIndex: 8 },
   { name: 'Octubre', year: 2026, monthIndex: 9 },
-  { name: 'Noviembre', year: 2026, monthIndex: 10 },
-  { name: 'Diciembre', year: 2026, monthIndex: 11 },
+  { name: 'Noviembre', year: 2026, monthIndex: 10 }
 ];
 
 const daysOfWeek = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
@@ -54,14 +53,28 @@ const projectEvents = [
   { date: "2026-08-11", type: "meeting", title: "Sincronización General", description: "Evaluación de la base de datos maestra limpia con 5.881 clientes." },
   { date: "2026-08-12", type: "meeting", title: "Revisión OCR Pedidos", description: "Evaluación de la automatización OCR para órdenes de compra." },
   { date: "2026-08-13", type: "meeting", title: "Llamado de Atención", description: "Omar y Luis Carlos solicitan cronograma tipo Gantt y mayor formalidad." },
-  { date: "2026-08-14", type: "milestone", title: "Emisión de Informe", description: "Scarpian emite respuesta formal detallando metodología y avances del proyecto." }
+  { date: "2026-08-14", type: "milestone", title: "Emisión de Informe", description: "Scarpian emite respuesta formal detallando metodología y avances del proyecto." },
+  { date: "2026-10-20", type: "meeting", title: "Sesión 1, Pruebas finales", description: "Duración: 2 Horas. Cualquier momento de 8am a 12m." },
+  { date: "2026-10-21", type: "meeting", title: "Sesión 2, Pruebas finales", description: "Duración: 2 Horas. Cualquier momento de 8am a 12m." },
+  { date: "2026-10-23", type: "meeting", title: "Capacitación Gaitán", description: "Capacitación en Sede Gaitán." },
+  { date: "2026-10-24", type: "milestone", title: "Levantamiento de Inventario", description: "Levantamiento de Inventario en Sede Gaitán." },
+  { date: "2026-10-26", type: "meeting", title: "Acompañamiento Gaitán", description: "Día 1 de acompañamiento en Sede Gaitán." },
+  { date: "2026-11-06", type: "meeting", title: "Capacitación Centenario", description: "Capacitación en Sede Centenario." },
+  { date: "2026-11-07", type: "milestone", title: "Levantamiento de Inventario", description: "Levantamiento de Inventario en Sede Centenario." },
+  { date: "2026-11-09", type: "meeting", title: "Acompañamiento Centenario", description: "Día 1 de acompañamiento en Sede Centenario." },
+  { date: "2026-11-18", type: "milestone", title: "Instalación Barranquilla", description: "Instalación en Sede Barranquilla." },
+  { date: "2026-11-19", type: "meeting", title: "Visita Sede Barranquilla", description: "Capacitación 1." },
+  { date: "2026-11-20", type: "meeting", title: "Visita Sede Barranquilla", description: "Capacitación 2." },
+  { date: "2026-11-21", type: "milestone", title: "Levantamiento de Inventario", description: "Levantamiento de Inventario en Sede Barranquilla." },
+  { date: "2026-11-23", type: "meeting", title: "Acompañamiento Barranquilla", description: "Día 1 de acompañamiento en Sede Barranquilla." }
 ];
 
 const blockPeriods = [
-  { start: "2026-05-13", end: "2026-05-16", title: "Feria (Corferias)", description: "Procoquinal en feria. Disponibilidad reducida para revisiones.", color: "#fef08a" },
-  { start: "2026-06-16", end: "2026-07-05", title: "Pausa Solicitada (Procoquinal)", description: "Viaje de Luis K (Armenia/Bquilla) y Vacaciones de Omar.", color: "#fed7aa" },
-  { start: "2026-06-21", end: "2026-06-30", title: "Salud Familiar (Ingrid)", description: "La madre de Ingrid (Contadora) enferma. Dificultades para cuadrar reuniones.", color: "#fca5a5" },
-  { start: "2026-07-29", end: "2026-08-05", title: "Fuerza Mayor Contable", description: "Fallecimiento de la madre de la contadora (Ingrid). Pausa obligada por luto.", color: "#fca5a5" }
+  { start: "2026-05-13", end: "2026-05-16", title: "Bloqueo: Feria (Corferias)", description: "Procoquinal en feria. Disponibilidad reducida para revisiones.", color: "#fef08a" },
+  { start: "2026-06-16", end: "2026-07-05", title: "Bloqueo: Pausa Solicitada (Procoquinal)", description: "Viaje de Luis K (Armenia/Bquilla) y Vacaciones de Omar.", color: "#fed7aa" },
+  { start: "2026-06-21", end: "2026-06-30", title: "Bloqueo: Salud Familiar (Ingrid)", description: "La madre de Ingrid (Contadora) enferma. Dificultades para cuadrar reuniones.", color: "#fca5a5" },
+  { start: "2026-07-29", end: "2026-08-05", title: "Bloqueo: Fuerza Mayor Contable", description: "Fallecimiento de la madre de la contadora (Ingrid). Pausa obligada por luto.", color: "#fca5a5" },
+  { start: "2026-10-20", end: "2026-10-21", title: "Jornada Especial: Pruebas Finales", description: "Días asignados para pruebas finales del sistema.", color: "#bfdbfe" }
 ];
 
 const isDateInPeriod = (dateStr: string, start: string, end: string) => {
@@ -108,8 +121,11 @@ const generateCalendarGrid = (year: number, monthIndex: number) => {
 };
 
 const CalendarCarousel = () => {
-  // Empezar en Mayo (index 3) o Junio para que se vean eventos
-  const [activeIndex, setActiveIndex] = useState(3);
+  const currentMonthIndex = new Date().getMonth();
+  const defaultIndex = monthData.findIndex(m => m.monthIndex === currentMonthIndex);
+  const initialIndex = defaultIndex !== -1 ? defaultIndex : 0;
+  
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev < monthData.length - 1 ? prev + 1 : prev));
@@ -121,18 +137,6 @@ const CalendarCarousel = () => {
 
   return (
     <div className="carousel-section">
-      <div className="carousel-header">
-        <h2>Bitácora Forense del Proyecto</h2>
-        <p>Historial detallado de reuniones, pagos, hitos y ausencias prolongadas extraído del Event Log.</p>
-        
-        <div className="legend-container">
-          <span className="legend-item"><Users size={16} color="#3b82f6" style={{marginRight: 6}}/> Reuniones</span>
-          <span className="legend-item"><DollarSign size={16} color="#10b981" style={{marginRight: 6}}/> Pagos</span>
-          <span className="legend-item"><Flag size={16} color="#8b5cf6" style={{marginRight: 6}}/> Hitos</span>
-          <span className="legend-item"><XCircle size={16} color="#ef4444" style={{marginRight: 6}}/> Canceladas</span>
-          <span className="legend-item"><AlertTriangle size={16} color="#f59e0b" style={{marginRight: 6}}/> Bloqueos de Agenda</span>
-        </div>
-      </div>
 
       <div className="carousel-container">
         <button className="carousel-btn" onClick={handlePrev} disabled={activeIndex === 0}>
@@ -186,7 +190,7 @@ const CalendarCarousel = () => {
 
                       const combinedTooltipEvents = [
                         ...dayEvents,
-                        ...matchedPeriods.map(p => ({ type: 'block', title: `Bloqueo: ${p.title}`, description: p.description }))
+                        ...matchedPeriods.map(p => ({ type: 'block', title: p.title, description: p.description }))
                       ];
 
                       const cellStyle = matchedPeriods.length > 0 

@@ -1,6 +1,8 @@
 import React from 'react';
 import MasterGantt from './MasterGantt';
 import EquipmentDeliveryMatrix from './EquipmentDeliveryMatrix';
+import CalendarCarousel from './CalendarCarousel';
+import SiigoTrackingDashboard from './SiigoTrackingDashboard';
 
 export default function EstadoActual() {
   return (
@@ -13,6 +15,14 @@ export default function EstadoActual() {
           frente al avance real en código, midiendo la brecha ("gap") entre la Interfaz construida y el Backend restante.
         </p>
       </section>
+
+      <div className="full-width-section">
+        <CalendarCarousel />
+      </div>
+
+      <div className="full-width-section" style={{ padding: '10px 20px' }}>
+        <SiigoTrackingDashboard />
+      </div>
 
       <div className="full-width-section" style={{ backgroundColor: '#ffffff', padding: '1px 0 40px 0' }}>
         <EquipmentDeliveryMatrix />

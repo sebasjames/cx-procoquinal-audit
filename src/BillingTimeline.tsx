@@ -10,8 +10,7 @@ const billingEvents = [
   { id: 5, x: 45.1, position: 'top',   date: "28 de Mayo",  title: "Tercer Pago A",  amount: 5000, currency: "USD", type: "payment", description: "Primer abono del tercer ciclo." },
   { id: 6, x: 61.7, position: 'bottom', date: "3 de Julio",  title: "Tercer Pago B",  amount: 3930, currency: "USD", type: "remainder", description: "Liquidación ($3,450 + $480)." },
   { id: 7, x: 66.3, position: 'top',   date: "13 de Julio", title: "Facturación Julio", amount: 18881100, currency: "COP", type: "payment", description: "Pagado 19 Agosto" },
-  { id: 8, x: 80.6, position: 'bottom', date: "13 de Agosto", title: "Facturación Agosto", amount: 22027950, currency: "COP", type: "pending", description: "Próximo a vencimiento." },
-  { id: 9, x: 83,  position: 'top',    date: "14 de Agosto", title: "AUDITORÍA", amount: null, currency: "", type: "audit", description: "Informe detallado integral." },
+  { id: 8, x: 80.6, position: 'bottom', date: "13 de Agosto", title: "Facturación Agosto", amount: 22027950, currency: "COP", type: "payment", description: "Pagado 17 de Septiembre" },
   { id: 10, x: 95, position: 'bottom', date: "13 de Sept",  title: "Entregable", amount: 22027950, currency: "COP", type: "pending", description: "Cierre de la Etapa 2." }
 ];
 
